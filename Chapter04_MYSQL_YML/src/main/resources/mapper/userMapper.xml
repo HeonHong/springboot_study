@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 이 부분은 pdf 4페이지 참고 -->
+ <mapper namespace = "userSQL">
+ <!-- UserDTO의 필드와 테이블의 컬럼명이 틀린 경우 -->
+ <!-- 
+	<resultMap type="user.bean.UserDTO" id="userResult">
+		<result property="name" column="NAME"/>
+		<result property="id" column="ID"/>
+		<result property="pwd" column="PWD"/>
+	</resultMap>
+ -->
+ 
+ <insert id = "write" parameterType ="user">
+ 	<!-- <insert id = "write" parameterType ="user.bean.UserDTO">
+ 	alias에서 별명 설정해놔서 굳이 풀쿼리 쓸 필요 없어진다. -->
+ 		insert into usertable values(#{name},#{id},#{pwd})
+ 	</insert>
+ 	
+ 	<select id="getList" resultType="user">
+ 	<!-- 넘어올 데이터 없으니까 parameter필요x -->
+ 		select*from usertable
+ 	</select>
+ 	
+ 	<select id="getUser" parameterType="java.lang.String" resultType="user">
+ 	<!-- 넘어올 데이터 없으니까 parameter필요x -->
+ 		select*from usertable where id = #{id}
+ 	</select>
+ 	
+ 	<update id="update" parameterType="user">
+ 	<!-- 여기선 제너릭 필요X -->
+ 		update usertable set name=#{name}, pwd=#{pwd} where id = #{id}
+ 	</update>
+ 	
+ 	<delete id="delete" parameterType="java.lang.String">
+ 	<!-- 여기선 제너릭 필요X -->
+ 		delete from usertable where id = #{id}
+ 	</delete>
+ 	
+ 	<select id="search" parameterType="java.util.Map" resultType="user">
+ 	
+ 		select*from usertable where
+ 		
+ 		<!-- xml형식 -->
+ 		
+ 		
+ 		<!-- 1번 다중 if문
+ 			select*from usertable where
+ 		<if test="columnName == 'name'">
+ 		 name like '%' || #{value} || '%'
+ 		</if>
+ 		<if test="columnName == 'id'">
+ 		 id like '%' || #{value} || '%'
+ 		</if>
+ 		 -->
+ 		<!-- 여기서 #은 mapping된 첫번째 키값이다
+ 		'%#{value}' 불가
+
+ 		 -->
+ 		 
+ 		 
+ 		<!-- 2번 switch문
+ 		 <choose>
+ 		 	<when test="columnName == 'name'">
+ 		 	name like '%' || #{value} || '%'
+ 		 	</when>
+ 		 	<otherwise>
+ 		 	 id like '%' || #{value} || '%'
+ 		 	</otherwise>
+ 		 </choose> -->
+ 		
+ 		 select*from usertable where ${columnName} like '%' || #{value} || '%'
+ 		 
+ 	</select>
+ 	
+ </mapper>
+
+ <!-- namespace에 이름을 작성하여 내부 태그 아이디가 같아도 타 파일과 충돌 나지 않게 만들어줘야한다. -->
