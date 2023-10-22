@@ -16,7 +16,7 @@ public class OrderServiceV3 {
         TraceStatus status = null;
 
         try{
-            status = trace.begin("OrderServiceV4.orderItem()");
+            status = trace.begin("OrderServiceV5.orderItem()");
             //파라미터로 받은 traceId가 아니라 status안에 있는 traceId를 보내야함.
             //왜냐하면 status에서 갱신된 traceId 정보를 가지고 있기 때문이다.
             orderRepository.save(itemId);

@@ -1,25 +1,29 @@
-package hello.advanced1.v4;
+package hello.advanced1.v5;
 
 
 
-import hello.advanced1.trace.TraceStatus;
+import hello.advanced1.trace.callback.TraceCallback;
+import hello.advanced1.trace.callback.TraceTemplate;
 import hello.advanced1.trace.logTrace.LogTrace;
 import hello.advanced1.trace.template.AbstractTemplate;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RequiredArgsConstructor
-public class OrderRepositoryV4 {
+public class OrderRepositoryV5 {
 
-    private final LogTrace trace;
+    private TraceTemplate traceTemplate;
+
+    public OrderRepositoryV5(LogTrace logTrace) {
+        this.traceTemplate = new TraceTemplate(logTrace);
+    }
 
     public void save(String itemId){
 
-
-        AbstractTemplate<Void> template = new AbstractTemplate<Void>(trace) {
+        traceTemplate.execute("OrderRepositoryV5.save()", new TraceCallback<>() {
             @Override
-            protected Void call() {
+            public Object call() {
                 //저장 로직
                 if(itemId.equals("ex")){
                     throw new IllegalStateException("예외발생");
@@ -28,9 +32,8 @@ public class OrderRepositoryV4 {
 
                 return null;
             }
-        };
+        });
 
-        template.execute("OrderRepositoryV5.save()");
     }
 
     private void sleep(int millis){
