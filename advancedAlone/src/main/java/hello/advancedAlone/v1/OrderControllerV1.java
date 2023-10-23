@@ -2,6 +2,7 @@ package hello.advancedAlone.v1;
 
 import hello.advancedAlone.trace.TraceStatus;
 import hello.advancedAlone.trace.helloTrace.HelloTrace1;
+import hello.advancedAlone.trace.logTrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderControllerV1 {
 
     private final OrderServiceV1 orderService;
-    private final HelloTrace1 trace;
+    private final LogTrace trace;
 
     @GetMapping("/v1/request")
     public String request(String itemId){
