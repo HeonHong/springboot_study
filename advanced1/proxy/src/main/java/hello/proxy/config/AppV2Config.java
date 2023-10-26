@@ -10,9 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppV2Config {
     @Bean
-    public OrderControllerV2 orderControllerV22(){
+    public OrderControllerV2 orderControllerV2(){
         return new OrderControllerV2(orderServiceV2());
     }
+    //orderController로 해줘도 상관없다. 그냥 AppV1Config랑 이름만 겹치지 않으면 상관없다.
 
     @Bean
     public OrderServiceV2 orderServiceV2(){
