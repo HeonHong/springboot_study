@@ -5,6 +5,8 @@ import hello.advanced1.trace.threadlocal.code.ThreadLocalService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 @Slf4j
 public class ThreadLocalServiceTest {
 
@@ -50,4 +52,5 @@ public class ThreadLocalServiceTest {
             throw new RuntimeException(e);
         }
     }
+
 }
