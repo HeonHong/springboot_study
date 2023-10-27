@@ -7,10 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 public class MessageDecorator implements Component{
 
     private Component component;
-
     public MessageDecorator(Component component) {
-        this.component = component;
+        this.component=component;
     }
+
 
     @Override
     public String operation() {
