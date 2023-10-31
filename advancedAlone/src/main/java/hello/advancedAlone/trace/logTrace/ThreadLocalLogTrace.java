@@ -41,12 +41,12 @@ public class ThreadLocalLogTrace implements LogTrace{
 
         Long endMillis = System.currentTimeMillis();
         Long time = endMillis - status.getStartMillis();
-
         TraceId traceId = status.getTraceId();
+
         if(e==null){
-            log.info("[{}] {}{} {}ms",traceId.getId(), addSpace(COMPLETE_PREFIX,traceId.getLevel()), status.getMessage(), time);
+            log.info("[{}] {}{} {}ms",traceIdHolder.get().getId(), addSpace(COMPLETE_PREFIX,traceIdHolder.get().getLevel()), status.getMessage(), time);
         }else{
-            log.info("[{}] {}{} {}ms ex={}",traceId.getId(), addSpace(EX_PREFIX,traceId.getLevel()),status.getMessage(), time, e.toString());
+            log.info("[{}] {}{} {}ms ex={}",traceIdHolder.get().getId(), addSpace(EX_PREFIX,traceIdHolder.get().getLevel()),status.getMessage(), time, e.toString());
         }
         releaseId();
     }

@@ -25,7 +25,7 @@ public class TraceId {
     };
 
     public TraceId createNextId() {
-        return new TraceId(this.id,++level );
+        return new TraceId(this.id,++level);
     }
 
     public boolean isFirstLevel(){

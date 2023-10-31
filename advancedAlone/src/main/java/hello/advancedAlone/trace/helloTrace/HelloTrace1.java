@@ -45,9 +45,9 @@ public class HelloTrace1 implements LogTrace {
         Long time = endMillis - status.getStartMillis();
 
         if(e==null){
-            log.info("[{}] {}{} {}ms",status.getTraceId().getId(), addSpace(COMPLETE_PREFIX,status.getTraceId().getLevel()), status.getMessage(), time);
+            log.info("[{}] {}{} {}ms",traceIdHolder.getId(), addSpace(COMPLETE_PREFIX,traceIdHolder.getLevel()), status.getMessage(), time);
         }else{
-            log.info("[{}] {}{} {}ms ex={}",status.getTraceId().getId(), addSpace(EX_PREFIX,status.getTraceId().getLevel()),status.getMessage(), time, e.toString());
+            log.info("[{}] {}{} {}ms ex={}",traceIdHolder.getId(), addSpace(EX_PREFIX,traceIdHolder.getLevel()),status.getMessage(), time, e.toString());
         }
         releaseId();
     }
@@ -66,7 +66,7 @@ public class HelloTrace1 implements LogTrace {
         if(traceIdHolder.isFirstLevel()){
             traceIdHolder=null;
         }else{
-            traceIdHolder.createPreviousId();
+            traceIdHolder=traceIdHolder.createPreviousId();
         }
     };
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RequestMapping//controller로 인식
+@RequestMapping//@bean 수동등록해서 controller로 인식
 @ResponseBody
 /*@Controller 안에 확인해보면 @Component가 존재해서 자동으로 등록되기 때문에 수동으로 등록하려면
 위와 같이하고 config에 등록해주면 된다.*/
