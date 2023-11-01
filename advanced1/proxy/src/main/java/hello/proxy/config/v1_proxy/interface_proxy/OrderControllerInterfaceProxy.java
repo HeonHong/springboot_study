@@ -11,23 +11,32 @@ public class OrderControllerInterfaceProxy implements OrderControllerV1 {
 
     private final OrderControllerV1 target;
     private final LogTrace logTrace;
+    private String cacheValue;
+
     @Override
     public String request(String itemId) {
 
-        TraceStatus status=null;
+
+        if(cacheValue==null){
+            System.out.println("null로 들어옴");
+            TraceStatus status=null;
 
         try {
             status =  logTrace.begin("OrderContoller.request()");
 
             //target호출
             String result = target.request(itemId);
+            cacheValue=result;
             logTrace.end(status);
             return result;
         }catch (Exception e){
             logTrace.exception(status,e);
             throw e;
         }
-
+        }else{
+            System.out.println("cache로 들어옴");
+            return cacheValue;
+        }
 
     }
 
