@@ -11,8 +11,10 @@ import java.lang.reflect.Method;
 
 @Slf4j
 @Aspect
+//AnnotationAwareAspectJAutoProxyCreator
 public class LogTraceAspect {
-
+//1. @AspectJ를 보고 Advisor로 변환해서 저장
+//2. 어드바이저를 기반으로 프록시를 생성
     private final LogTrace logTrace;
 
     public LogTraceAspect(LogTrace logTrace){
@@ -21,7 +23,7 @@ public class LogTraceAspect {
 
     @Around("execution(* hello.proxy.app..*(..))")//포인트컷
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable{ //어드바이스 로직
-
+        //Advice로직
         TraceStatus status=null;
 
         try {
@@ -40,3 +42,4 @@ public class LogTraceAspect {
         }
     }
 }
+
