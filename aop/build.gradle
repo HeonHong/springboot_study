@@ -23,10 +23,14 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-aop'
+	//spring jpa 같은 것들을 사용할 때는 필요 없지만 포함하고 있는 라이브러리들이 없을 때는 꼭 넣어줘야한다.
+	implementation 'org.springframework.boot:spring-boot-starter-aop'//직접 추가
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//테스트에서 lombok사용
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok:'
 }
 
 tasks.named('test') {
