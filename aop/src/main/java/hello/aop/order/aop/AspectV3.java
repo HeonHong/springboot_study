@@ -15,7 +15,7 @@ public class AspectV3 {
     @Pointcut("execution(* hello.aop.order..*(..))")
     private void allOrder(){}//pointcut signature
 
-    //클래스 일므 패턴이 *Service인 것
+    //클래스 이름 패턴이 *Service인 것
     @Pointcut("execution(* *..*Service.*(..))")
     private void allService(){}
 
