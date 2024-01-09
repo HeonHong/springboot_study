@@ -19,8 +19,8 @@ public class CallServiceV1 {
 //    }
 
     @Autowired
-    public void setCallServiceV1(CallServiceV1 callServiceV1){
-        
+    public void setCallServiceV1(@Lazy CallServiceV1 callServiceV1){
+        //계속 뜨면 @Lazy로 지연로딩
         log.info("callServiceV1  setter={}", callServiceV1.getClass());
         this.callServiceV1=callServiceV1;
     }
